@@ -1,10 +1,12 @@
 package org.fasttrackit;
 
+import java.util.Date;
+
 public class AnimalFood {
     String foodName;
     float price;
     float quantity;
-    int expirationDate;
+    Date expirationDate;
     boolean onStock;
 
 }
