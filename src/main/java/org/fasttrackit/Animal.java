@@ -106,4 +106,14 @@ public class Animal {
                 " sex: " + this.sex + " recreation: " + this.recreation.getRecreationName());
 
     }
+
+    public void stateOfHappiness(Animal animal){
+
+        if(this.happiness > 5)
+            System.out.println(animal.name + " is happy.");
+        else
+            System.out.println(animal.name + " is sad.");
+
+    }
+
 }

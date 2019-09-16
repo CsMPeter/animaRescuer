@@ -23,7 +23,7 @@ public class App
 
         Animal cat = new Animal("Kitty",2,9,8,10,catFood,catRecreation,3.21,"Male");
 
-        Animal dog = new Animal("Lassie",3,6,7,5,dogFood,dogRecreation,15,"Female");
+        Animal dog = new Animal("Lassie",3,6,7,6,dogFood,dogRecreation,15,"Female");
 
         Adopter adopter1 = new Adopter("John",2000);
 
@@ -31,16 +31,18 @@ public class App
 
         Game game = new Game(adopter1,dog,vet1);
 
-         dog.print();
+        Dog dog1 = new Dog(dog,true,"Labrador");
 
-//       Mammals mammal = new Mammals(dog,true);
+        Cat cat1 = new Cat(cat,false,"Mixed");
+
+        dog1.stateOfHappiness(dog);
+
+//         dog.print();
 //
 //
-//       mammal.print();
-
-       adopter1.Feed(dog,dogFood);
-
-       dog.print();
+//       adopter1.Feed(dog,dogFood);
+//
+//       dog.print();
 
 
 

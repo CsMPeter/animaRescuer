@@ -17,7 +17,7 @@ public class Game {
         return adopter;
     }
 
-    public Animal getDog() {
+    public Animal getDog1() {
         return dog;
     }
 
@@ -29,7 +29,7 @@ public class Game {
         this.adopter = adopter;
     }
 
-    public void setDog(Animal dog) {
+    public void setDog1(Animal dog) {
         this.dog = dog;
     }
 
