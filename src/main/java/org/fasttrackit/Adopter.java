@@ -19,6 +19,8 @@ public class Adopter {
 
         animal.setAppetite(newAppetite - 1);
 
+        System.out.println(animal.getName() + " has " + animal.getAppetite() + " as new appetite.");
+
     }
 
     public void recreate(Animal animal,Adopter adopter,Recreation recreation){
@@ -28,6 +30,8 @@ public class Adopter {
         System.out.println(adopterName + "did" + recreation.getRecreationName() + "with" + animal.getName());
 
         animal.setHappiness(newHappiness + 1);
+
+        System.out.println("New happiness is: " + animal.getHappiness());
 
     }
 
