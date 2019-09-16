@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import java.util.Date;
+
 /**
  * Hello world!
  *
@@ -8,25 +10,44 @@ public class App
 {
     public static void main( String[] args )
     {
-        Animal cat = new Animal();
-        Adopter adopter1 = new Adopter();
-        AnimalFood food = new AnimalFood();
-        Game game = new Game();
-        Recreation recreation = new Recreation();
-        Vet vet1 = new Vet();
-        cat.name = "Kitty";
-        cat.age = 2;
-        cat.healthiness = 9;
-        cat.appetite = 8;
-        cat.favouriteFood.foodName = "Frisky";
-        cat.happiness = 10;
-        adopter1.adopterName = "John";
-        adopter1.funds = 2000;
-        food.expirationDate = 2007-12-03;
-        food.foodName = "Frisky";
-        food.onStock = true;
-        food.price = 20;
-        food.quantity = 1000;
-        recreation.recreationName = "Ball";
+
+        Recreation catRecreation = new Recreation("Nap",20);
+
+        Recreation dogRecreation = new Recreation("Stick catching",30);
+
+        Date expDate = new Date(2020,10,9);
+
+        AnimalFood catFood = new AnimalFood("Frisky",50,20,expDate,true);
+
+        AnimalFood dogFood = new AnimalFood("Pedigree",60,70,expDate,true);
+
+        Animal cat = new Animal("Kitty",2,9,8,10,catFood,catRecreation,3.21,"Male");
+
+        Animal dog = new Animal("Lassie",3,6,7,5,dogFood,dogRecreation,15,"Female");
+
+        Adopter adopter1 = new Adopter("John",2000);
+
+        Vet vet1 = new Vet("Michael","Cardiology",5);
+
+        Game game = new Game(adopter1,dog,vet1);
+
+         dog.print();
+
+//       Mammals mammal = new Mammals(dog,true);
+//
+//
+//       mammal.print();
+
+       adopter1.Feed(dog,dogFood);
+
+       dog.print();
+
+
+
+
+
+
+
+
     }
 }
