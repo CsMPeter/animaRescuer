@@ -5,6 +5,8 @@ public class Cat extends Animal{
     private boolean catPureBlooded;
     private String catSpecies;
 
+
+
     public Cat(Animal animal, boolean pureBlooded, String catSpecies) {
         super(animal.getName(),animal.getAge(),animal.getHealthiness(),animal.getAppetite(),animal.getHappiness(),animal.getFavouriteFood()
                 ,animal.getRecreation(),animal.getWeight(),animal.getSex());

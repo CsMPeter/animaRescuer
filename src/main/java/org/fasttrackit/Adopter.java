@@ -14,8 +14,14 @@ public class Adopter {
     public void Feed(Animal animal, AnimalFood food){
 
         int newAppetite = animal.getAppetite();
+        int newHappiness = animal.getHappiness();
         // „John just gave some Purina food to Chaika”
         System.out.println(adopterName + " just gave some " + food.getFoodName() + " food to " + animal.getName());
+
+        if (food.getFoodName().equals(animal.getFavouriteFood())){
+            animal.setHappiness(newHappiness + 1);
+            System.out.println("New happiness is: " + animal.getHappiness());
+        }
 
         animal.setAppetite(newAppetite - 1);
 
@@ -29,7 +35,10 @@ public class Adopter {
 
         System.out.println(adopterName + "did" + recreation.getRecreationName() + "with" + animal.getName());
 
-        animal.setHappiness(newHappiness + 1);
+        if(recreation.getRecreationName().equals(animal.getRecreation()))
+            animal.setHappiness(newHappiness + 2);
+        else
+            animal.setHappiness(newHappiness + 1);
 
         System.out.println("New happiness is: " + animal.getHappiness());
 
