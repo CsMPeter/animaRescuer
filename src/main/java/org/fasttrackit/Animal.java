@@ -107,12 +107,12 @@ public class Animal {
 
     }
 
-    public void stateOfHappiness(Animal animal){
+    public void stateOfHappiness(){
 
         if(this.happiness > 5)
-            System.out.println(animal.name + " is happy.");
+            System.out.println(name + " is happy.");
         else
-            System.out.println(animal.name + " is sad.");
+            System.out.println(name + " is sad.");
 
     }
 

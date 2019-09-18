@@ -35,7 +35,7 @@ public class App
 
         Cat cat1 = new Cat(cat,false,"Mixed");
 
-        dog1.stateOfHappiness(dog);
+        dog1.stateOfHappiness();
 
 //         dog.print();
 //

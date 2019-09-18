@@ -38,11 +38,11 @@ public class Cat extends Animal{
     }
 
     @Override
-    public void stateOfHappiness(Animal animal) {
+    public void stateOfHappiness() {
         if(getHappiness() > 5)
-            System.out.println(animal.getName() + " is happy and curring");
+            System.out.println(getName() + " is happy and curring");
         else
-            System.out.println(animal.getName() + " is sad.");
+            System.out.println(getName() + " is sad.");
     }
 }
 

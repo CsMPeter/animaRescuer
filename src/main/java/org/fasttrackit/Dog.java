@@ -41,11 +41,11 @@ public class Dog extends Animal{
     }
 
     @Override
-    public void stateOfHappiness(Animal animal) {
-        if(animal.getHappiness() > 5)
-            System.out.println(animal.getName() + " is happy and shaking its tail.");
+    public void stateOfHappiness() {
+        if(getHappiness() > 5)
+            System.out.println(getName() + " is happy and shaking its tail.");
         else
-            System.out.println(animal.getName() + " is sad.");
+            System.out.println(getName() + " is sad.");
     }
 }
 
