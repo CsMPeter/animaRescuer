@@ -35,7 +35,7 @@ public class App
 
         Cat cat1 = new Cat(cat,false,"Mixed");
 
-        dog1.stateOfHappiness();
+//        dog1.stateOfHappiness();
 
 //         dog.print();
 //
@@ -43,6 +43,7 @@ public class App
 //       adopter1.Feed(dog,dogFood);
 //
 //       dog.print();
+        game.start();
 
 
 
