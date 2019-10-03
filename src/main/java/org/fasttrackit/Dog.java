@@ -12,6 +12,9 @@ public class Dog extends Animal{
         this.dogSpecies = dogSpecies;
     }
 
+    public Dog (){
+
+    }
 
     @Override
     public void print() {

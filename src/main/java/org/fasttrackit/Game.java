@@ -131,4 +131,16 @@ public class Game {
 
     }
 
+    private void initAnimal(){
+
+        Animal dog3 = new Dog();
+        dog3.setName("Lassie");
+        dog3.setHappiness(10);
+        dog3.setHealthiness(8);
+        dog3.setAge(3);
+        dog3.setAppetite(5);
+        dog3.setSex("Male");
+
+    }
+
 }

@@ -43,7 +43,17 @@ public class App
 //       adopter1.Feed(dog,dogFood);
 //
 //       dog.print();
-        game.start();
+
+        if(dog1 instanceof Animal) {
+            System.out.println("Dog is an instance of Animal");
+        }
+
+        if(cat1 instanceof Animal){
+
+            System.out.println("Cat is an instance of Animal");
+        }
+
+        //game.start();
 
 
 
