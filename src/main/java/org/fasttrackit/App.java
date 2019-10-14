@@ -41,17 +41,12 @@ public class App {
 //
 //       dog.print();
 
-        if (dog1 instanceof Animal) {
-            System.out.println("Dog is an instance of Animal");
-        }
+        Animal polymorphedCat = new Cat(cat,true,"Siami");
+        polymorphedCat.stateOfHappiness();
 
-        dog1.stateOfHappiness();
+        Animal polymorhedDog = new Dog(dog,false,"Sheperd");
+        polymorhedDog.stateOfHappiness();
 
-        if (cat1 instanceof Animal) {
-            System.out.println("Cat is an instance of Animal");
-        }
-
-        cat1.stateOfHappiness();
 
         //game.start();
 

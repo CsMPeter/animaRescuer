@@ -1,9 +1,6 @@
 package org.fasttrackit;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     private Adopter adopter;
@@ -11,7 +8,6 @@ public class Game {
     private Vet vet;
     private List<AnimalFood> availableFood = new ArrayList<>();
     private List<Recreation> availableActivities = new ArrayList<>();
-
 
 
     public Game(Adopter adopter, Animal dog, Vet vet) {
@@ -48,12 +44,10 @@ public class Game {
 
     public void start() {
 
-        initFood();
-        initActivity();
-        System.out.println("Available food.\n");
-        displayFood();
-        System.out.println("Available activities.\n");
-        displayActivity();
+        initAnimal();
+        initRescuer();
+        nameAnimal();
+        requireFeeding();
 
 
     }
@@ -77,7 +71,7 @@ public class Game {
 
         int activityCount = getActivityCountFromUser();
 
-        for(int i=0;i<activityCount;i++) {
+        for (int i = 0; i < activityCount; i++) {
 
             Recreation activity = new Recreation("Running" + i, 20);
 
@@ -116,31 +110,65 @@ public class Game {
     private void displayFood() {
 
 
-
         for (AnimalFood AnimalFood : availableFood)
             System.out.println(AnimalFood.getFoodName());
 
     }
 
-    private void displayActivity(){
+    private void displayActivity() {
 
-        for(Recreation Recreatioin : availableActivities){
+        for (Recreation Recreatioin : availableActivities) {
             System.out.println(Recreatioin.getRecreationName());
 
         }
 
     }
 
-    private void initAnimal(){
+    private void initAnimal() {
 
-        Animal dog3 = new Dog();
-        dog3.setName("Lassie");
-        dog3.setHappiness(10);
-        dog3.setHealthiness(8);
-        dog3.setAge(3);
-        dog3.setAppetite(5);
-        dog3.setSex("Male");
+        String AnimalName;
+        dog = new Dog();
+        System.out.println("Enter Animals name: ");
+        Scanner scanner = new Scanner(System.in);
+        try{
+            AnimalName = scanner.next();
+            dog.setName(AnimalName);
+        }catch(InputMismatchException e){
+            System.out.println("Invalid data type.");
+            initAnimal();
+        }
 
+    }
+
+    private void initRescuer() {
+        String userName;
+        adopter = new Adopter();
+        System.out.println("Enter name:");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            userName = scanner.next();
+            adopter.setAdopterName(userName);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid data type.");
+            initRescuer();
+        }
+
+    }
+
+    private void nameAnimal() {
+        String givenAnimalName;
+        System.out.println("Give the Animal a name: ");
+        Scanner scanner = new Scanner(System.in);
+        givenAnimalName = scanner.next();
+        dog.setName(givenAnimalName);
+
+    }
+
+    private void requireFeeding(){
+        System.out.println("Please feed your animal!");
+        System.out.println("Available foods: ");
+        displayFood();
+        System.out.println("");
     }
 
 }

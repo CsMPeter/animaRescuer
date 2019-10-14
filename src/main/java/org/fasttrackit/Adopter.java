@@ -9,7 +9,7 @@ public class Adopter {
         this.funds = funds;
     }
 
-
+    public Adopter(){}
 
     public void Feed(Animal animal, AnimalFood food){
 
