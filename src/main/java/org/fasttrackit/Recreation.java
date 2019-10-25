@@ -9,6 +9,8 @@ public class Recreation {
         this.durationMin = durationMin;
     }
 
+    public Recreation(){}
+
     public String getRecreationName() {
         return recreationName;
     }

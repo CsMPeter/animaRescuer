@@ -15,12 +15,11 @@ public class Adopter {
 
         int newAppetite = animal.getAppetite();
         int newHappiness = animal.getHappiness();
-        // „John just gave some Purina food to Chaika”
         System.out.println(adopterName + " just gave some " + food.getFoodName() + " food to " + animal.getName());
 
-        if (food.getFoodName().equals(animal.getFavouriteFood())){
+        if (food.getFoodName().equals(animal.getFavouriteFood().getFoodName())){
             animal.setHappiness(newHappiness + 1);
-            System.out.println("New happiness is: " + animal.getHappiness());
+            System.out.println("Favourite food bonus!! New happiness is: " + animal.getHappiness());
         }
 
         animal.setAppetite(newAppetite - 1);
@@ -33,10 +32,12 @@ public class Adopter {
 
         int newHappiness = animal.getHappiness();
 
-        System.out.println(adopterName + "did" + recreation.getRecreationName() + "with" + animal.getName());
+        System.out.println(adopterName + " did " + recreation.getRecreationName() + " with " + animal.getName());
 
-        if(recreation.getRecreationName().equals(animal.getRecreation()))
+        if(recreation.getRecreationName().equals(animal.getRecreation().getRecreationName())){
             animal.setHappiness(newHappiness + 2);
+            System.out.println("Favourite activity bonus!!");
+        }
         else
             animal.setHappiness(newHappiness + 1);
 

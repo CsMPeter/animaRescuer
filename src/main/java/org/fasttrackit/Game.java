@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Game {
     private Adopter adopter;
-    private Animal dog;
+    private Animal animal;
     private Vet vet;
     private List<AnimalFood> availableFood = new ArrayList<>();
     private List<Recreation> availableActivities = new ArrayList<>();
@@ -12,7 +12,7 @@ public class Game {
 
     public Game(Adopter adopter, Animal dog, Vet vet) {
         this.adopter = adopter;
-        this.dog = dog;
+        this.animal = animal;
         this.vet = vet;
     }
 
@@ -22,7 +22,7 @@ public class Game {
     }
 
     public Animal getDog1() {
-        return dog;
+        return animal;
     }
 
     public Vet getVet() {
@@ -34,7 +34,7 @@ public class Game {
     }
 
     public void setDog1(Animal dog) {
-        this.dog = dog;
+        this.animal = animal;
     }
 
     public void setVet(Vet vet) {
@@ -44,10 +44,52 @@ public class Game {
 
     public void start() {
 
+
+        initFood();
+        initActivity();
         initAnimal();
         initRescuer();
         nameAnimal();
-        requireFeeding();
+        int feeding, playing;
+        for(int i = 0;i < 10; i++) {
+
+            if (animal.getAppetite() == 10) {
+                System.out.println("Your animal died of starvation :(");
+                break;
+            }
+
+            System.out.println("Would you like to feed your animal?(0 = yes, 1 = no)");
+            Scanner scanner = new Scanner(System.in);
+            feeding = scanner.nextInt();
+            if (feeding == 0) {
+                requireFeeding();
+            } else
+                animal.setAppetite(animal.getAppetite() + 1);
+
+            System.out.println("Would you like to play with your animal?(0 = yes, 1 = no)");
+            playing = scanner.nextInt();
+            if (playing == 0) {
+                requireActivity();
+            } else
+                animal.setHappiness(animal.getHappiness() - 1);
+
+
+
+
+        }
+        if(animal.getAppetite() > 6 && animal.getHappiness() > 6)
+            System.out.println("Your animal remained hungry, but it's happy that you played with it. Feed it more next time!");
+        else
+            if(animal.getAppetite() < 6 && animal.getHappiness() > 6)
+            System.out.println("Your animal is fed and it's happy that you played with it. You are the MVP!");
+            else
+                if(animal.getAppetite() > 6 && animal.getHappiness() < 6)
+                    System.out.println("Your animal remained hungry and it's sad because you didn't spent enough time with it. Ty better next time!");
+                else
+                 if(animal.getAppetite() < 6 && animal.getHappiness() < 6)
+                     System.out.println("Your animal is fed but it's sad because you didn't spent enough time with it. Spend more time with it next time!");
+
+
 
 
     }
@@ -56,53 +98,27 @@ public class Game {
 
     private void initFood() {
 
-        int foodCount = getFoodCountFromUser();
+        AnimalFood royalCanin = new AnimalFood("Royal Canin", 40, 300, expDate, true);
+        AnimalFood pedigree = new AnimalFood("Pedigree", 30, 100, expDate, true);
+        AnimalFood purina = new AnimalFood("Purina", 50, 150, expDate, true);
 
-        for (int i = 0; i < foodCount; i++) {
-            AnimalFood food = new AnimalFood("Royal Canin" + i, 40, 300, expDate, true);
-
-            availableFood.add(food);
-        }
+        availableFood.add(royalCanin);
+        availableFood.add(pedigree);
+        availableFood.add(purina);
 
 
     }
 
     private void initActivity() {
 
-        int activityCount = getActivityCountFromUser();
+        Recreation running = new Recreation("Running", 10);
+        Recreation frisbee = new Recreation("Frisbee catching", 15);
+        Recreation sleeping = new Recreation("Sleeping", 20);
 
-        for (int i = 0; i < activityCount; i++) {
+        availableActivities.add(running);
+        availableActivities.add(frisbee);
+        availableActivities.add(sleeping);
 
-            Recreation activity = new Recreation("Running" + i, 20);
-
-
-            availableActivities.add(activity);
-        }
-
-
-    }
-
-    private int getFoodCountFromUser() {
-
-        System.out.println("Please enter number of food: ");
-        int count;
-
-        Scanner scanner = new Scanner(System.in);
-        count = scanner.nextInt();
-
-        return count;
-
-    }
-
-    private int getActivityCountFromUser() {
-
-        System.out.println("Please enter number of activities: ");
-        int count;
-
-        Scanner scanner = new Scanner(System.in);
-        count = scanner.nextInt();
-
-        return count;
 
     }
 
@@ -126,24 +142,48 @@ public class Game {
 
     private void initAnimal() {
 
-        String AnimalName;
-        dog = new Dog();
-        System.out.println("Enter Animals name: ");
+        int chosenAnimal;
+        System.out.println("Choose animal type Dog or Cat(0/1): ");
         Scanner scanner = new Scanner(System.in);
-        try{
-            AnimalName = scanner.next();
-            dog.setName(AnimalName);
-        }catch(InputMismatchException e){
-            System.out.println("Invalid data type.");
-            initAnimal();
+        chosenAnimal = scanner.nextInt();
+        if (chosenAnimal == 0) {
+            animal = new Dog();
+            animal.setHappiness(0);
+            animal.setAppetite(9);
+            animal.setAge(3);
+            animal.setFavouriteFood(availableFood.get(0));
+            animal.setHealthiness(6);
+            animal.setSex("Male");
+            animal.setWeight(10);
+            animal.setRecreation(availableActivities.get(0));
+
+            System.out.println("You selected a dog which is " + animal.getAge() + " years old, its weight is " + animal.getWeight() + "kg, its a " + animal.getSex() +
+                    " it really likes eating " + animal.getFavouriteFood().getFoodName() + " and loves " + animal.getRecreation().getRecreationName());
+
+        } else if (chosenAnimal == 1) {
+            animal = new Cat();
+            animal.setHappiness(0);
+            animal.setAppetite(9);
+            animal.setRecreation(availableActivities.get(2));
+            animal.setWeight(3);
+            animal.setSex("Female");
+            animal.setHealthiness(7);
+            animal.setFavouriteFood(availableFood.get(1));
+            animal.setAge(2);
+
+            System.out.println("You selected a cat which is " + animal.getAge() + " years old, its weight is " + animal.getWeight() + "kg, its a" + animal.getSex() +
+                    " it really likes eating " + animal.getFavouriteFood().getFoodName() + "and loves " + animal.getRecreation().getRecreationName());
+
         }
 
+
     }
+
 
     private void initRescuer() {
         String userName;
         adopter = new Adopter();
-        System.out.println("Enter name:");
+        System.out.println("Enter your name:");
         Scanner scanner = new Scanner(System.in);
         try {
             userName = scanner.next();
@@ -152,6 +192,7 @@ public class Game {
             System.out.println("Invalid data type.");
             initRescuer();
         }
+        System.out.println("Thanks for saving animals " + adopter.getAdopterName() + " :) ");
 
     }
 
@@ -160,14 +201,29 @@ public class Game {
         System.out.println("Give the Animal a name: ");
         Scanner scanner = new Scanner(System.in);
         givenAnimalName = scanner.next();
-        dog.setName(givenAnimalName);
-
+        animal.setName(givenAnimalName);
     }
 
-    private void requireFeeding(){
-        System.out.println("Please feed your animal!");
+    private void requireFeeding() {
+        int chosenFood;
         System.out.println("Available foods: ");
         displayFood();
+        System.out.println("Choose one please(0/1/2): ");
+        Scanner scanner = new Scanner(System.in);
+        chosenFood = scanner.nextInt();
+        adopter.Feed(animal, availableFood.get(chosenFood));
+
+        System.out.println("");
+    }
+
+    private void requireActivity() {
+        int chosenActivity;
+        System.out.println("Available recreations: ");
+        displayActivity();
+        System.out.println("Choose one please(0/1/2): ");
+        Scanner scanner = new Scanner(System.in);
+        chosenActivity = scanner.nextInt();
+        adopter.recreate(animal, adopter, availableActivities.get(chosenActivity));
         System.out.println("");
     }
 

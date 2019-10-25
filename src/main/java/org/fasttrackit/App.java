@@ -41,14 +41,14 @@ public class App {
 //
 //       dog.print();
 
-        Animal polymorphedCat = new Cat(cat,true,"Siami");
-        polymorphedCat.stateOfHappiness();
+//        Animal polymorphedCat = new Cat(cat,true,"Siami");
+//        polymorphedCat.stateOfHappiness();
+//
+//        Animal polymorhedDog = new Dog(dog,false,"Sheperd");
+//        polymorhedDog.stateOfHappiness();
 
-        Animal polymorhedDog = new Dog(dog,false,"Sheperd");
-        polymorhedDog.stateOfHappiness();
 
-
-        //game.start();
+        game.start();
 
 
     }

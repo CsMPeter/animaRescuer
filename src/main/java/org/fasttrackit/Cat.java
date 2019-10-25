@@ -13,6 +13,8 @@ public class Cat extends Animal {
         this.catSpecies = catSpecies;
     }
 
+    public Cat(){}
+
 
     @Override
     public void print() {
