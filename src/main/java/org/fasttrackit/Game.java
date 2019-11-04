@@ -200,8 +200,13 @@ public class Game {
         String givenAnimalName;
         System.out.println("Give the Animal a name: ");
         Scanner scanner = new Scanner(System.in);
-        givenAnimalName = scanner.next();
-        animal.setName(givenAnimalName);
+        try {
+            givenAnimalName = scanner.next();
+            animal.setName(givenAnimalName);
+        }catch (InputMismatchException e) {
+            System.out.println("Invalid data type.");
+            nameAnimal();
+        }
     }
 
     private void requireFeeding() {
@@ -210,10 +215,15 @@ public class Game {
         displayFood();
         System.out.println("Choose one please(0/1/2): ");
         Scanner scanner = new Scanner(System.in);
-        chosenFood = scanner.nextInt();
-        adopter.Feed(animal, availableFood.get(chosenFood));
+        try {
+            chosenFood = scanner.nextInt();
+            adopter.Feed(animal, availableFood.get(chosenFood));
+            System.out.println("");
+        }catch (InputMismatchException e){
+            System.out.println("Invalid data type.");
+            requireFeeding();
+        }
 
-        System.out.println("");
     }
 
     private void requireActivity() {
@@ -222,9 +232,14 @@ public class Game {
         displayActivity();
         System.out.println("Choose one please(0/1/2): ");
         Scanner scanner = new Scanner(System.in);
+        try{
         chosenActivity = scanner.nextInt();
         adopter.recreate(animal, adopter, availableActivities.get(chosenActivity));
         System.out.println("");
+        }catch (InputMismatchException e){
+            System.out.println("Invalid data type.");
+            requireActivity();
+        }
     }
 
 }
