@@ -1,6 +1,8 @@
 package org.fasttrackit;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Game {
     private Adopter adopter;
@@ -145,35 +147,40 @@ public class Game {
         int chosenAnimal;
         System.out.println("Choose animal type Dog or Cat(0/1): ");
         Scanner scanner = new Scanner(System.in);
-        chosenAnimal = scanner.nextInt();
-        if (chosenAnimal == 0) {
-            animal = new Dog();
-            animal.setHappiness(0);
-            animal.setAppetite(9);
-            animal.setAge(3);
-            animal.setFavouriteFood(availableFood.get(0));
-            animal.setHealthiness(6);
-            animal.setSex("Male");
-            animal.setWeight(10);
-            animal.setRecreation(availableActivities.get(0));
+        try {
+            chosenAnimal = scanner.nextInt();
+            if (chosenAnimal == 0) {
+                animal = new Dog();
+                animal.setHappiness(0);
+                animal.setAppetite(9);
+                animal.setAge(3);
+                animal.setFavouriteFood(availableFood.get(0));
+                animal.setHealthiness(6);
+                animal.setSex("Male");
+                animal.setWeight(10);
+                animal.setRecreation(availableActivities.get(0));
 
-            System.out.println("You selected a dog which is " + animal.getAge() + " years old, its weight is " + animal.getWeight() + "kg, its a " + animal.getSex() +
-                    " it really likes eating " + animal.getFavouriteFood().getFoodName() + " and loves " + animal.getRecreation().getRecreationName());
+                System.out.println("You selected a dog which is " + animal.getAge() + " years old, its weight is " + animal.getWeight() + "kg, its a " + animal.getSex() +
+                        " it really likes eating " + animal.getFavouriteFood().getFoodName() + " and loves " + animal.getRecreation().getRecreationName());
 
-        } else if (chosenAnimal == 1) {
-            animal = new Cat();
-            animal.setHappiness(0);
-            animal.setAppetite(9);
-            animal.setRecreation(availableActivities.get(2));
-            animal.setWeight(3);
-            animal.setSex("Female");
-            animal.setHealthiness(7);
-            animal.setFavouriteFood(availableFood.get(1));
-            animal.setAge(2);
+            } else if (chosenAnimal == 1) {
+                animal = new Cat();
+                animal.setHappiness(0);
+                animal.setAppetite(9);
+                animal.setRecreation(availableActivities.get(2));
+                animal.setWeight(3);
+                animal.setSex("Female");
+                animal.setHealthiness(7);
+                animal.setFavouriteFood(availableFood.get(1));
+                animal.setAge(2);
 
-            System.out.println("You selected a cat which is " + animal.getAge() + " years old, its weight is " + animal.getWeight() + "kg, its a" + animal.getSex() +
-                    " it really likes eating " + animal.getFavouriteFood().getFoodName() + "and loves " + animal.getRecreation().getRecreationName());
+                System.out.println("You selected a cat which is " + animal.getAge() + " years old, its weight is " + animal.getWeight() + "kg, its a" + animal.getSex() +
+                        " it really likes eating " + animal.getFavouriteFood().getFoodName() + "and loves " + animal.getRecreation().getRecreationName());
 
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Invalid datatype.");
+            initAnimal();
         }
 
 
@@ -185,28 +192,41 @@ public class Game {
         adopter = new Adopter();
         System.out.println("Enter your name:");
         Scanner scanner = new Scanner(System.in);
-        try {
-            userName = scanner.next();
-            adopter.setAdopterName(userName);
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid data type.");
-            initRescuer();
-        }
-        System.out.println("Thanks for saving animals " + adopter.getAdopterName() + " :) ");
 
-    }
+         Pattern usrNamePtrn = Pattern.compile("^[a-zA-Z_-]{0,14}$");
+            userName = scanner.next();
+            Matcher mtch = usrNamePtrn.matcher(userName);
+            if(mtch.matches()){
+
+                adopter.setAdopterName(userName);
+                System.out.println("Thanks for saving animals " + adopter.getAdopterName() + " :) ");
+            }else{
+            System.out.println("Invalid data type.");
+            initRescuer();}
+        }
+
+
+
 
     private void nameAnimal() {
         String givenAnimalName;
         System.out.println("Give the Animal a name: ");
         Scanner scanner = new Scanner(System.in);
-        try {
-            givenAnimalName = scanner.next();
-            animal.setName(givenAnimalName);
-        }catch (InputMismatchException e) {
-            System.out.println("Invalid data type.");
-            nameAnimal();
-        }
+
+        Pattern usrNamePtrn = Pattern.compile("^[a-zA-Z_-]{0,14}$");
+        givenAnimalName = scanner.next();
+
+        Matcher mtch = usrNamePtrn.matcher(givenAnimalName);
+
+        if(mtch.matches()){
+
+            adopter.setAdopterName(givenAnimalName);
+            System.out.println("Thanks for saving animals " + adopter.getAdopterName() + " :) ");
+        }else{
+        System.out.println("Invalid data type.");
+       nameAnimal();}
+
+
     }
 
     private void requireFeeding() {
