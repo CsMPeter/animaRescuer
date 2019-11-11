@@ -63,6 +63,11 @@ public class Game {
             System.out.println("Would you like to feed your animal?(0 = yes, 1 = no)");
             Scanner scanner = new Scanner(System.in);
             feeding = scanner.nextInt();
+            while (feeding > 1)
+            {
+                System.out.println("Enter a valid number!");
+                feeding = scanner.nextInt();
+            }
             if (feeding == 0) {
                 requireFeeding();
             } else
@@ -70,6 +75,11 @@ public class Game {
 
             System.out.println("Would you like to play with your animal?(0 = yes, 1 = no)");
             playing = scanner.nextInt();
+            while(playing > 1)
+            {
+                System.out.println("Enter a valid number!");
+                playing = scanner.nextInt();
+            }
             if (playing == 0) {
                 requireActivity();
             } else
@@ -178,6 +188,10 @@ public class Game {
                         " it really likes eating " + animal.getFavouriteFood().getFoodName() + "and loves " + animal.getRecreation().getRecreationName());
 
             }
+            else{
+                System.out.println("Please choose from the given numbers!");
+                initAnimal();
+            }
         }catch (InputMismatchException e){
             System.out.println("Invalid datatype.");
             initAnimal();
@@ -220,8 +234,7 @@ public class Game {
 
         if(mtch.matches()){
 
-            adopter.setAdopterName(givenAnimalName);
-            System.out.println("Thanks for saving animals " + adopter.getAdopterName() + " :) ");
+            animal.setName(givenAnimalName);
         }else{
         System.out.println("Invalid data type.");
        nameAnimal();}
