@@ -248,14 +248,23 @@ public class Game {
         displayFood();
         System.out.println("Choose one please(0/1/2): ");
         Scanner scanner = new Scanner(System.in);
-        try {
-            chosenFood = scanner.nextInt();
+        chosenFood = scanner.nextInt();
+        if(chosenFood == 0){
             adopter.Feed(animal, availableFood.get(chosenFood));
             System.out.println("");
-        }catch (InputMismatchException e){
+        }
+        else if(chosenFood == 1){
+            adopter.Feed(animal, availableFood.get(chosenFood));
+            System.out.println("");
+        }
+        else if(chosenFood == 2){
+            adopter.Feed(animal, availableFood.get(chosenFood));
+            System.out.println("");
+        }else{
             System.out.println("Invalid data type.");
             requireFeeding();
         }
+
 
     }
 
